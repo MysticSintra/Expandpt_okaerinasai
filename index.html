@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okaerinasai Global — Expand to Asia with Creators</title>
+
+<!-- Favicon & Device Icons -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1E4470">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Serif+JP:wght@500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EFE6;
+    --paper-deep:#EAE5D6;
+    --ink:#1B1B1F;
+    --ink-soft:#4A4A47;
+    --azulejo:#1E4470;
+    --azulejo-deep:#15304F;
+    --hanko:#A63A2E;
+    --line:#CFC7B2;
+    --max:760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:17px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  html[lang="ja"] body{font-family:'Noto Sans JP',sans-serif;}
+
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    color:var(--ink);
+    margin:0;
+    line-height:1.2;
+  }
+  html[lang="ja"] h1,html[lang="ja"] h2,html[lang="ja"] h3{font-family:'Noto Serif JP',serif;}
+
+  p{margin:0 0 1em 0;}
+  a{color:inherit;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+  .prose{max-width:var(--max);}
+
+  /* HEADER LAYOUT */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(242,239,230,0.96);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  
+  /* Top Block: Logo & Language Switcher */
+  .nav-top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;max-width:1040px;margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces',serif;font-weight:500;font-size:1.25rem;
+    letter-spacing:0.01em;white-space:nowrap;
+  }
+  .brand .jp{font-family:'Noto Sans JP',sans-serif;font-size:0.6em;color:var(--ink-soft);margin-left:8px;font-weight:400;}
+  
+  .nav-top-right{display:flex;align-items:center;gap:16px;}
+  .nav-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink);}
+
+  .lang-switch{display:flex;gap:2px;border:1px solid var(--line);border-radius:2px;overflow:hidden;flex-shrink:0;}
+  .lang-btn{
+    background:transparent;border:none;padding:6px 10px;font-size:0.82rem;
+    cursor:pointer;color:var(--ink-soft);font-family:'IBM Plex Sans',sans-serif;
+  }
+  .lang-btn.active{background:var(--azulejo);color:var(--paper);}
+  .lang-btn:not(.active):hover{background:var(--paper-deep);color:var(--ink);}
+
+  /* Second Block: Navigation Menu (Left to Right) */
+  .nav-bar{
+    border-top:1px solid var(--line);
+    background:var(--paper-deep);
+  }
+  .wrap-nav{
+    max-width:1040px;margin:0 auto;padding:0 24px;
+  }
+  nav ul{
+    list-style:none;display:flex;gap:36px;margin:0;padding:10px 0;
+    align-items:center;
+  }
+  nav a{
+    text-decoration:none;font-size:0.9rem;font-weight:500;
+    color:var(--ink-soft);letter-spacing:0.02em;
+    transition:color 0.15s ease;
+  }
+  nav a:hover{color:var(--azulejo);}
+
+  @media (max-width:760px){
+    .nav-bar{position:relative;}
+    nav ul{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--paper);border-bottom:1px solid var(--line);
+      flex-direction:column;gap:0;padding:0 24px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    }
+    nav ul.open{display:flex;}
+    nav li{border-bottom:1px solid var(--line);width:100%;}
+    nav li:last-child{border-bottom:none;}
+    nav a{display:block;padding:14px 0;}
+    .nav-toggle{display:block;}
+  }
+
+  /* HERO & SECTIONS */
+  .hero{padding:64px 0 56px;}
+  .route{width:100%;max-width:320px;height:auto;margin-bottom:32px;display:block;}
+  .hero h1{font-size:2.3rem;max-width:640px;}
+  .hero .lead{font-size:1.1rem;color:var(--ink-soft);max-width:520px;margin-top:18px;}
+  .cta-row{display:flex;gap:16px;margin-top:30px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:13px 26px;font-size:0.95rem;
+    text-decoration:none;border-radius:2px;font-weight:500;
+    border:1px solid var(--ink);cursor:pointer;
+  }
+  .btn-primary{background:var(--azulejo);border-color:var(--azulejo);color:var(--paper);}
+  .btn-primary:hover{background:var(--azulejo-deep);}
+  .btn-ghost{background:transparent;color:var(--ink);}
+  .btn-ghost:hover{background:var(--paper-deep);}
+
+  .divider{display:flex;align-items:center;gap:14px;margin:0 auto;max-width:1040px;padding:0 24px;}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line);}
+  .divider .dot{width:6px;height:6px;border-radius:50%;background:var(--hanko);flex-shrink:0;}
+
+  section{padding:56px 0;}
+  .section-head{max-width:560px;margin-bottom:36px;}
+  .section-head .kicker{color:var(--azulejo);font-size:0.85rem;margin-bottom:10px;display:block;}
+  .section-head h2{font-size:1.75rem;}
+  .section-head p{color:var(--ink-soft);margin-top:14px;}
+
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);}
+  .fact{padding:24px 20px 24px 0;border-bottom:1px solid var(--line);}
+  .fact + .fact{border-left:1px solid var(--line);padding-left:20px;}
+  .fact .num{font-family:'Fraunces',serif;font-size:2rem;color:var(--azulejo);}
+  .fact .label{color:var(--ink-soft);font-size:0.9rem;margin-top:6px;}
+  @media (max-width:680px){
+    .facts{grid-template-columns:1fr;}
+    .fact + .fact{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:20px;}
+  }
+
+  .journey-item{
+    display:grid;grid-template-columns:56px 1fr;gap:22px;
+    padding:32px 0;border-top:1px solid var(--line);
+  }
+  .journey-item:last-child{border-bottom:1px solid var(--line);}
+  .step-num{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--hanko);}
+  .journey-item h3{font-size:1.3rem;margin-bottom:6px;}
+  .journey-item .tagline{color:var(--ink-soft);font-style:italic;margin-bottom:16px;}
+  .journey-item ul{margin:0;padding-left:20px;color:var(--ink-soft);}
+  .journey-item li{margin-bottom:6px;}
+  @media (max-width:600px){.journey-item{grid-template-columns:1fr;gap:8px;}}
+
+  .process-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;}
+  .process-grid .p-item{border-left:2px solid var(--azulejo);padding-left:18px;}
+  .process-grid .p-item .num{color:var(--azulejo);font-family:'Fraunces',serif;font-size:1.05rem;}
+  @media (max-width:720px){.process-grid{grid-template-columns:1fr;}}
+
+  .trust-box{background:var(--paper-deep);border:1px solid var(--line);padding:30px;max-width:var(--max);}
+  .trust-box p{color:var(--ink-soft);margin:0;}
+
+  .faq-item{border-top:1px solid var(--line);padding:20px 0;max-width:var(--max);}
+  .faq-item h3{font-size:1.02rem;font-weight:600;font-family:'IBM Plex Sans',sans-serif;margin-bottom:8px;}
+  html[lang="ja"] .faq-item h3{font-family:'Noto Sans JP',sans-serif;}
+  .faq-item p{color:var(--ink-soft);margin:0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+
+  .contact{background:var(--azulejo-deep);color:var(--paper);}
+  .contact .section-head h2{color:var(--paper);}
+  .contact .section-head p{color:#C9D6E4;}
+  .contact .section-head .kicker{color:#8FB4DA;}
+  form{display:grid;gap:16px;max-width:520px;}
+  label{font-size:0.86rem;color:#C9D6E4;display:block;margin-bottom:6px;}
+  .label-row{display:flex;justify-content:space-between;align-items:baseline;}
+  .char-count{font-size:0.78rem;color:#7E9BBB;}
+  input,select,textarea{
+    width:100%;padding:12px 14px;border:1px solid #3C5F85;
+    background:#1A3859;color:var(--paper);font-family:inherit;font-size:0.95rem;
+    border-radius:2px;
+  }
+  input::placeholder,textarea::placeholder{color:#7E9BBB;}
+  form .btn-primary{background:var(--hanko);border-color:var(--hanko);justify-self:start;margin-top:6px;}
+  form .btn-primary:hover{background:#8A2F25;}
+  .consent{font-size:0.8rem;color:#A9C0D8;display:flex;gap:8px;align-items:flex-start;}
+  .consent input{width:auto;margin-top:3px;}
+
+  footer{padding:32px 0;border-top:1px solid var(--line);}
+  footer .disclaimer{color:var(--ink-soft);font-size:0.83rem;max-width:680px;}
+  footer .copy{color:var(--ink-soft);font-size:0.83rem;margin-top:18px;}
+</style>
+</head>
+<body>
+
+<header>
+  <!-- Top Block: Brand Logo & Language Switcher -->
+  <div class="nav-top">
+    <div class="brand">Okaerinasai Global<span class="jp">グローバル事業部</span></div>
+    <div class="nav-top-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en" onclick="applyLang('en')">EN</button>
+        <button class="lang-btn" data-lang="ja" onclick="applyLang('ja')">日本語</button>
+        <button class="lang-btn" data-lang="pt" onclick="applyLang('pt')">PT</button>
+      </div>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlist').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+
+  <!-- Second Block: Navigation Menu (Left to Right) -->
+  <div class="nav-bar">
+    <nav class="wrap-nav">
+      <ul id="navlist">
+        <li><a href="#services" data-i18n="nav.services">Solutions</a></li>
+        <li><a href="#process" data-i18n="nav.process">Process</a></li>
+        <li><a href="#about-team" data-i18n="nav.about">About</a></li>
+        <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Partner with us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <svg class="route" viewBox="0 0 340 90" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20,70 C 100,10 240,10 320,70" fill="none" stroke="#1E4470" stroke-width="1.5"/>
+      <circle cx="20" cy="70" r="5" fill="#1E4470"/>
+      <circle cx="320" cy="70" r="5" fill="#A63A2E"/>
+      <text x="20" y="86" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#4A4A47" text-anchor="middle">Portugal / EU</text>
+      <text x="320" y="86" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#4A4A47" text-anchor="middle">Asia</text>
+    </svg>
+    <h1 data-i18n="hero.h1">Expand your European business into Asia through high-impact creator collaborations.</h1>
+    <p class="lead" data-i18n="hero.lead">We connect European and Portuguese companies with top Asian influencers and content creators to drive brand awareness, local market entry, and sales across Asian markets.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-primary" data-i18n="hero.ctaPrimary">Schedule a Partnership Call</a>
+      <a href="#services" class="btn btn-ghost" data-i18n="hero.ctaGhost">Explore solutions</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="dot"></span></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" data-i18n="about.kicker">Why expand to Asia now</span>
+      <h2 data-i18n="about.h2">Tap into dynamic Asian digital markets with trusted local voices.</h2>
+      <p data-i18n="about.p">Traditional advertising often falls short across borders. By partnering with native Asian creators and influencers who already hold the trust of millions, European brands can break into Asian digital economies rapidly and authentically.</p>
+    </div>
+    <div class="facts">
+      <div class="fact">
+        <div class="num">2B+</div>
+        <div class="label" data-i18n="fact1.label">Digital consumer audience reach across key Asian markets</div>
+      </div>
+      <div class="fact">
+        <div class="num">100%</div>
+        <div class="label" data-i18n="fact2.label">Bilingual campaign management from Lisbon &amp; Tokyo</div>
+      </div>
+      <div class="fact">
+        <div class="num">ROI</div>
+        <div class="label" data-i18n="fact3.label">Focused conversion tracking and localized brand strategy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="dot"></span></div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" data-i18n="services.kicker">Solutions</span>
+      <h2 data-i18n="services.h2">Three ways we bridge your brand to Asia.</h2>
+      <p data-i18n="services.p">From initial market viability studies to matching you with vetted regional creators and managing full-scale campaigns, we handle the friction.</p>
+    </div>
+
+    <div class="journey">
+      <div class="journey-item">
+        <div class="step-num">01</div>
+        <div>
+          <h3 data-i18n="package1.title">Asian Market Entry Strategy</h3>
+          <p class="tagline" data-i18n="package1.tagline">Evaluate your product's potential and design a tailored roadmap for Asian expansion.</p>
+          <ul>
+            <li data-i18n="package1.li1">Comprehensive product-market fit analysis for Asia</li>
+            <li data-i18n="package1.li2">Competitor and audience behavior research</li>
+            <li data-i18n="package1.li3">Regulatory and compliance roadmap for cross-border trade</li>
+            <li data-i18n="package1.li4">Customized influencer marketing channel selection</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="step-num">02</div>
+        <div>
+          <h3 data-i18n="package2.title">Influencer Matching &amp; Campaigns</h3>
+          <p class="tagline" data-i18n="package2.tagline">Collaborate with hand-picked Asian creators to launch high-converting campaigns.</p>
+          <ul>
+            <li data-i18n="package2.li1">Direct access to vetted tier-1 and niche creators in Asia</li>
+            <li data-i18n="package2.li2">Bilingual contract negotiation and legal coordination</li>
+            <li data-i18n="package2.li3">Content localization, scripting oversight, and cultural alignment</li>
+            <li data-i18n="package2.li4">Campaign execution across major Asian social platforms</li>
+            <li data-i18n="package2.li5">Real-time performance tracking and reporting</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="step-num">03</div>
+        <div>
+          <h3 data-i18n="package3.title">Full-Scale Cross-Border Partnership</h3>
+          <p class="tagline" data-i18n="package3.tagline">End-to-end commercial management to build long-term market presence in Asia.</p>
+          <ul>
+            <li data-i18n="package3.li1">Dedicated relationship manager based between Europe and Asia</li>
+            <li data-i18n="package3.li2">Ongoing creator ambassador programs and long-term contracts</li>
+            <li data-i18n="package3.li3">E-commerce integration and distribution coordination</li>
+            <li data-i18n="package3.li4">Localization of brand assets and digital storefronts</li>
+            <li data-i18n="package3.li5">Regular strategic reviews and growth scaling</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="dot"></span></div>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" data-i18n="process.kicker">How it works</span>
+      <h2 data-i18n="process.h2">A transparent path from European HQ to Asian markets.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="p-item">
+        <div class="num">1</div>
+        <p><strong data-i18n="p1.title">Discovery.</strong> <span data-i18n="p1.text">We assess your product offering, brand identity, and target Asian region.</span></p>
+      </div>
+      <div class="p-item">
+        <div class="num">2</div>
+        <p><strong data-i18n="p2.title">Matching.</strong> <span data-i18n="p2.text">We propose ideal creator partners and design a bespoke campaign or entry plan.</span></p>
+      </div>
+      <div class="p-item">
+        <div class="num">3</div>
+        <p><strong data-i18n="p3.title">Launch &amp; Scale.</strong> <span data-i18n="p3.text">We execute the partnership, monitor conversions, and scale your brand presence.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="dot"></span></div>
+
+<section id="about-team">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" data-i18n="team.kicker">Who's behind this</span>
+      <h2 data-i18n="team.h2">Connecting European enterprise with Asian influence.</h2>
+    </div>
+    <div class="trust-box">
+      <p data-i18n="team.text">Okaerinasai Global is operated by cross-border specialists rooted in Portugal and Japan. We bridge European business excellence with deep Asian digital ecosystems, ensuring smooth communication, legal clarity, and high-impact partnerships for companies ready to scale internationally.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="dot"></span></div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" data-i18n="faq.kicker">Questions</span>
+      <h2 data-i18n="faq.h2">Key insights for expanding companies.</h2>
+    </div>
+    <div class="faq-item">
+      <h3 data-i18n="faq1.q">Which Asian markets do you cover?</h3>
+      <p data-i18n="faq1.a">We specialize primarily in Japan and broader East/Southeast Asian digital markets, leveraging deep local networks and bilingual creators.</p>
+    </div>
+    <div class="faq-item">
+      <h3 data-i18n="faq2.q">Do we need physical distribution in Asia before starting influencer campaigns?</h3>
+      <p data-i18n="faq2.a">Not necessarily. Many European brands start with brand awareness campaigns, digital services, or cross-border e-commerce shipping directly from Europe.</p>
+    </div>
+    <div class="faq-item">
+      <h3 data-i18n="faq3.q">How do you select the right creators for our brand?</h3>
+      <p data-i18n="faq3.a">We vet creators based on audience demographics, engagement quality, brand safety, and alignment with your specific product vertical.</p>
+    </div>
+    <div class="faq-item">
+      <h3 data-i18n="faq4.q">How are contracts and international payments managed?</h3>
+      <p data-i18n="faq4.a">We handle cross-border contracts, compliance, and translation through our team and trusted legal/accounting network, ensuring secure operations.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" data-i18n="contact.kicker">Get started</span>
+      <h2 data-i18n="contact.h2">Schedule a partnership call.</h2>
+      <p data-i18n="contact.p">Tell us about your company and your goals in Asia. Our team will review and reply within two business days.</p>
+    </div>
+    <form id="consultation-form" action="https://formspree.io/f/xzezrylk" method="POST">
+      <div>
+        <label for="name" data-i18n="label.name">Company Name &amp; Contact Person</label>
+        <input type="text" id="name" name="name" required data-i18n-placeholder="name.placeholder" placeholder="Your company name">
+      </div>
+      <div>
+        <label for="email" data-i18n="label.email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com">
+      </div>
+      <div>
+        <label for="business" data-i18n="label.business">What does your company offer / Website?</label>
+        <input type="text" id="business" name="business" data-i18n-placeholder="business.placeholder" placeholder="e.g. European wine brand / www.example.com">
+      </div>
+      <div>
+        <label for="timeline" data-i18n="label.timeline">What is your expansion goal?</label>
+        <select id="timeline" name="timeline">
+          <option data-i18n="opt1">Asian Market Entry Strategy</option>
+          <option data-i18n="opt2">Influencer Matching &amp; Campaigns</option>
+          <option data-i18n="opt3">Full-Scale Cross-Border Partnership</option>
+        </select>
+      </div>
+      <div>
+        <div class="label-row">
+          <label for="message" data-i18n="label.message">Tell us about your target Asian markets or goals</label>
+          <span id="char-count" class="char-count">0/500</span>
+        </div>
+        <textarea id="message" rows="3" name="message" maxlength="500" data-i18n-placeholder="message.placeholder" placeholder="Optional"></textarea>
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="consent" name="gdpr_consent" required>
+        <span data-i18n="label.consent">Information you submit is used only to respond to your enquiry and is processed in accordance with EU GDPR</span>
+      </label>
+      <button type="submit" id="submit-btn" class="btn btn-primary" data-i18n="btn.submit">Request a Partnership Call</button>
+      <div id="form-status" style="margin-top:12px; font-size:0.9rem; color:#8FB4DA;"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="disclaimer" data-i18n="footer.disclaimer">Okaerinasai Global provides business expansion consulting, cross-border marketing coordination, and creator partnership management. Formal legal and tax advisory services are supported via our licensed partners. Outcomes depend on individual market conditions.</p>
+    <p class="copy" data-i18n="footer.copy">© 2026 Okaerinasai Global. Lisbon, Portugal.</p>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  ja: {
+    "nav.services":"ソリューション","nav.process":"流れ","nav.about":"会社概要","nav.faq":"よくある質問","nav.contact":"パートナーシップ",
+    "hero.h1":"アジアのトップクリエイターとの協業で、ヨーロッパ企業のビジネスをアジアへ拡大。",
+    "hero.lead":"ヨーロッパ・ポルトガルの企業とアジアの優秀なインフルエンサーを結びつけ、認知拡大、現地市場への参入、そしてアジア市場全体での売上向上を支援します。",
+    "hero.ctaPrimary":"パートナーシップ相談を予約する","hero.ctaGhost":"ソリューションを見る",
+    "about.kicker":"今、なぜアジア展開なのか","about.h2":"信頼できる地元の声を通じて、活気あるアジアのデジタル市場へアクセス。",
+    "about.p":"国境を越えた伝統的な広告だけでは不十分なケースが多くあります。すでに何百万人もの信頼を得ている現地のクリエイターやインフルエンサーと提携することで、ヨーロッパのブランドは迅速かつ本質的にアジアのデジタル経済へ進出できます。",
+    "fact1.label":"主要なアジア市場におけるデジタル消費者層へのリーチ",
+    "fact2.label":"リスボンと東京をつなぐバイリンガルなキャンペーン管理",
+    "fact3.label":"成果に特化したコンバージョン追跡とローカライズされたブランド戦略",
+    "services.kicker":"ソリューション","services.h2":"ブランドをアジアへ繋ぐ3つのアプローチ。",
+    "services.p":"市場の実現可能性調査から、厳選された現地のクリエイターマッチング、大規模キャンペーンの運営まで、あらゆるハードルを解消します。",
+    "package1.title":"アジア市場参入戦略","package1.tagline":"アジアにおける製品の可能性を評価し、拡張に向けたロードマップを設計します。",
+    "package1.li1":"アジアにおける包括的なプロダクトマーケットフィット分析",
+    "package1.li2":"競合およびオーディエンスの行動調査",
+    "package1.li3":"クロスボーダー取引における規制およびコンプライアンス対応",
+    "package1.li4":"最適化されたインフルエンサーマーケティングチャネルの選定",
+    "package2.title":"クリエイターマッチング &amp; キャンペーン運営","package2.tagline":"厳選されたアジアのクリエイターと協業し、高コンバージョンなキャンペーンを展開します。",
+    "package2.li1":"アジアの厳選されたトップ・ニッチクリエイターへの直接アクセス",
+    "package2.li2":"バイリンガルによる契約交渉および法務調整",
+    "package2.li3":"コンテンツのローカライズ、台本監修、文化的アライメント",
+    "package2.li4":"主要なアジアソーシャルプラットフォームでのキャンペーン実行",
+    "package2.li5":"リアルタイムのパフォーマンス追跡とレポート",
+    "package3.title":"総合クロスボーダーパートナーシップ","package3.tagline":"アジアでの長期的な市場プレゼンスを構築するための包括的な商業マネジメント。",
+    "package3.li1":"欧州とアジアを拠点とする専任マネージャーの配置",
+    "package3.li2":"継続的なクリエイターアンバサダープログラムおよび長期契約",
+    "package3.li3":"EC統合および流通コーディネーション",
+    "package3.li4":"ブランド資産およびデジタル店舗のローカライズ",
+    "package3.li5":"定期的な戦略レビューと成長のスケールアップ",
+    "process.kicker":"ご利用の流れ","process.h2":"欧州の本社からアジア市場への明確な道筋。",
+    "p1.title":"ディスカバリー。","p1.text":"提供されている製品、ブランドアイデンティティ、ターゲットとするアジアの地域を評価します。",
+    "p2.title":"マッチング。","p2.text":"理想的なクリエイターパートナーをご提案し、特化型のキャンペーンや参入プランを設計します。",
+    "p3.title":"ローンチ＆スケール。","p3.text":"パートナーシップを実行し、コンバージョンを監視しながらブランドのプレゼンスを拡大します。",
+    "team.kicker":"運営チームについて","team.h2":"ヨーロッパの企業とアジアの影響力を結びつける。",
+    "team.text":"Okaerinasai Globalは、ポルトガルと日本に根ざしたクロスボーダーの専門家によって運営されています。ヨーロッパの優れたビジネス基準とアジアの深いデジタルエコシステムを繋ぎ、スムーズなコミュニケーションと確実なパートナーシップを提供します。",
+    "faq.kicker":"よくあるご質問","faq.h2":"展開を検討中の企業様へ。",
+    "faq1.q":"どのَアジア市場を対象としていますか？","faq1.a":"主に日本および東南アジア・東アジアのデジタル市場を対象とし、現地の深いネットワークとバイリンガルクリエイターを活用しています。",
+    "faq2.q":"インフルエンサーキャンペーンを開始する前に、アジアでの物理的な流通が必要ですか？","faq2.a":"いいえ、必ずしも必要ではありません。多くのヨーロッパブランドが、まずはブランド認知キャンペーンやデジタルサービス、あるいはヨーロッパから直接発送する越境ECからスタートしています。",
+    "faq3.q":"自社ブランドに最適なクリエイターをどのように選定しますか？","faq3.a":"オーディエンスの層、エンゲージメントの質、ブランドの安全性、お客様の製品ジャンルとの親和性に基づいて慎重に審査・選定します。",
+    "faq4.q":"契約や国際送金はどのように管理されますか？","faq4.a":"当社のチームと信頼できる法務・会計ネットワークを通じて、国境を越えた契約、コンプライアンス、翻訳を安全に管理します。",
+    "contact.kicker":"お問い合わせ","contact.h2":"パートナーシップのご相談予約。",
+    "contact.p":"貴社の企業概要とアジアにおける目標について教えてください。2営業日以内にチームよりご連絡いたします。",
+    "label.name":"企業名・ご担当者名","label.email":"メールアドレス","label.business":"貴社の事業内容 / ウェブサイトURL","label.timeline":"アジア展開における主な目標は？",
+    "opt1":"アジア市場参入戦略の策定","opt2":"インフルエンサーマッチング &amp; キャンペーン","opt3":"総合クロスボーダーパートナーシップ","label.message":"ターゲットとするアジア市場や目標について教えてください","btn.submit":"パートナーシップの相談を申し込む",
+    "label.consent":"送信いただいた情報は、ご相談への対応のみに使用され、EU GDPR（EU一般データ保護規則）に準拠して処理されます。",
+    "name.placeholder":"例：ヨーロピアンワイン株式会社","business.placeholder":"例：www.example.com","message.placeholder":"任意（500文字以内）",
+    "footer.disclaimer":"Okaerinasai Globalは、事業拡大コンサルティング、クロスボーダーマーケティングコーディネーション、クリエイターパートナーシップマネジメントを提供しています。正式な法的・税務アドバイザリーは提携パートナーを通じてサポートされます。",
+    "footer.copy":"© 2026 Okaerinasai Global. リスボン、ポルトガル。"
+  },
+  pt: {
+    "nav.services":"Soluções","nav.process":"Processo","nav.about":"Sobre","nav.faq":"FAQ","nav.contact":"Parceria",
+    "hero.h1":"Expanda o seu negócio europeu para a Ásia através de parcerias de alto impacto com criadores.",
+    "hero.lead":"Conectamos empresas europeias e portuguesas com os principais influenciadores e criadores de conteúdo asiáticos para impulsionar a notoriedade da marca, a entrada no mercado local e as vendas em toda a Ásia.",
+    "hero.ctaPrimary":"Agendar Reunião de Parceria","hero.ctaGhost":"Explorar soluções",
+    "about.kicker":"Porquê expandir para a Ásia agora","about.h2":"Aceda a mercados digitais asiáticos dinâmicos com vozes locais de confiança.",
+    "about.p":"A publicidade tradicional muitas vezes falha além-fronteiras. Ao fazer parceria com criadores e influenciadores nativos asiáticos que já conquistaram a confiança de milhões, as marcas europeias podem entrar nas economias digitais asiáticas de forma rápida e autêntica.",
+    "fact1.label":"Alcance de público consumidor digital nos principais mercados asiáticos",
+    "fact2.label":"Gestão de campanhas bilíngue a partir de Lisboa e Tóquio",
+    "fact3.label":"Foco em conversões, tracking de ROI e estratégia de marca localizada",
+    "services.kicker":"Soluções","services.h2":"Três formas de conectar a sua marca à Ásia.",
+    "services.p":"Desde estudos iniciais de viabilidade de mercado até ao matching com criadores regionais verificados e gestão de campanhas de grande escala, nós tratamos de tudo.",
+    "package1.title":"Estratégia de Entrada no Mercado Asiático","package1.tagline":"Avalie o potencial do seu produto e desenhe um plano estruturado para a expansão asiática.",
+    "package1.li1":"Análise abrangente de adequação produto-mercado (product-market fit)",
+    "package1.li2":"Pesquisa de concorrentes e comportamento do público-alvo",
+    "package1.li3":"Plano regulatório e de conformidade para comércio transfronteiriço",
+    "package1.li4":"Seleção personalizada de canais de marketing de influência",
+    "package2.title":"Matching de Influenciadores e Campanhas","package2.tagline":"Colabore com criadores asiáticos selecionados para lançar campanhas de alta conversão.",
+    "package2.li1":"Acesso direto a criadores de topo e de nicho verificados na Ásia",
+    "package2.li2":"Negociação de contratos bilíngues e coordenação jurídica",
+    "package2.li3":"Localização de conteúdos, supervisão de guiões e alinhamento cultural",
+    "package2.li4":"Execução de campanhas nas principais redes sociais asiáticas",
+    "package2.li5":"Monitorização de desempenho e relatórios em tempo real",
+    "package3.title":"Parceria Transfronteiriça de Longo Prazo","package3.tagline":"Gestão comercial ponta a ponta para construir presença de mercado sustentada na Ásia.",
+    "package3.li1":"Gestor de relacionamento dedicado baseado entre a Europa e a Ásia",
+    "package3.li2":"Programas contínuos de embaixadores criativos e contratos de longo prazo",
+    "package3.li3":"Integração de comércio eletrónico e coordenação de distribuição",
+    "package3.li4":"Localização de ativos de marca e montras digitais",
+    "package3.li5":"Revisões estratégicas regulares e escalabilidade de crescimento",
+    "process.kicker":"Como funciona","process.h2":"Um caminho transparente da sede europeia aos mercados asiáticos.",
+    "p1.title":"Descoberta.","p1.text":"Avaliamos a sua oferta de produtos, identidade de marca e a região asiática pretendida.",
+    "p2.title":"Matching.","p2.text":"Propomos parceiros criadores ideais e desenhamos uma campanha ou plano de entrada à medida.",
+    "p3.title":"Lançamento e Escala.","p3.text":"Executamos a parceria, monitorizamos conversões e escalamos a presença da sua marca.",
+    "team.kicker":"Quem está por trás","team.h2":"Conectando a empresa europeia à influência asiática.",
+    "team.text":"Okaerinasai Global é operada por especialistas transfronteiriços com raízes em Portugal e no Japão. Unimos a excelência empresarial europeia aos profundos ecossistemas digitais asiáticos, garantindo comunicação fluida, clareza jurídica e parcerias de alto impacto.",
+    "faq.kicker":"Questões","faq.h2":"Informações essenciais para empresas em expansão.",
+    "faq1.q":"Quais os mercados asiáticos que cobrem?","faq1.a":"Especializamo-nos principalmente no Japão e nos mercados digitais mais amplos do Leste e Sudeste Asiático, aproveitando redes locais e criadores bilíngues.",
+    "faq2.q":"Precisamos de distribuição física na Ásia antes de iniciar campanhas com influenciadores?","faq2.a":"Não obrigatoriamente. Muitas marcas europeias começam com campanhas de notoriedade, serviços digitais ou comércio eletrónico transfronteiriço enviado diretamente da Europa.",
+    "faq3.q":"Como selecionam os criadores certos para a nossa marca?","faq3.a":"Avaliamos os criadores com base na demografia do público, qualidade de engajamento, segurança de marca e alinhamento com o seu setor específico.",
+    "faq4.q":"Como são geridos os contratos e pagamentos internacionais?","faq4.a":"Gerimos contratos transfronteiriços, conformidade legal e tradução através da nossa equipa e rede de parceiros jurídicos e contabilísticos de confiança.",
+    "contact.kicker":"Começar","contact.h2":"Agende uma chamada de parceria.",
+    "contact.p":"Conte-nos sobre a sua empresa e os seus objetivos na Ásia. Responderemos no prazo de dois dias úteis.",
+    "label.name":"Nome da Empresa e Pessoa de Contato","label.email":"E-mail","label.business":"O que a sua empresa oferece / Website","label.timeline":"Qual é o seu objetivo de expansão?",
+    "opt1":"Estratégia de Entrada no Mercado Asiático","opt2":"Matching de Influenciadores e Campanhas","opt3":"Parceria Transfronteiriça de Longo Prazo","label.message":"Conte-nos sobre os seus mercados-alvo na Ásia ou objetivos","btn.submit":"Solicitar Chamada de Parceria",
+    "label.consent":"As informações submetidas são usadas apenas para responder à sua consulta e são processadas em conformidade com o RGPD da UE",
+    "name.placeholder":"Ex: Marca de Vinho Portuguesa / www.example.com","business.placeholder":"www.example.com","message.placeholder":"Opcional (máx. 500 caracteres)",
+    "footer.disclaimer":"Okaerinasai Global fornece consultoria de expansão de negócios, coordenação de marketing transfronteiriço e gestão de parcerias com criadores. Serviços formais de assessoria jurídica e fiscal são apoiados através dos nossos parceiros licenciados.",
+    "footer.copy":"© 2026 Okaerinasai Global. Lisboa, Portugal."
+  },
+  en: {
+    "nav.services":"Solutions","nav.process":"Process","nav.about":"About","nav.faq":"FAQ","nav.contact":"Partner with us",
+    "hero.h1":"Expand your European business into Asia through high-impact creator collaborations.",
+    "hero.lead":"We connect European and Portuguese companies with top Asian influencers and content creators to drive brand awareness, local market entry, and sales across Asian markets.",
+    "hero.ctaPrimary":"Schedule a Partnership Call","hero.ctaGhost":"Explore solutions",
+    "about.kicker":"Why expand to Asia now","about.h2":"Tap into dynamic Asian digital markets with trusted local voices.",
+    "about.p":"Traditional advertising often falls short across borders. By partnering with native Asian creators and influencers who already hold the trust of millions, European brands can break into Asian digital economies rapidly and authentically.",
+    "fact1.label":"Digital consumer audience reach across key Asian markets",
+    "fact2.label":"Bilingual campaign management from Lisbon &amp; Tokyo",
+    "fact3.label":"Focused conversion tracking and localized brand strategy",
+    "services.kicker":"Solutions","services.h2":"Three ways we bridge your brand to Asia.",
+    "services.p":"From initial market viability studies to matching you with vetted regional creators and managing full-scale campaigns, we handle the friction.",
+    "package1.title":"Asian Market Entry Strategy","package1.tagline":"Evaluate your product's potential and design a tailored roadmap for Asian expansion.",
+    "package1.li1":"Comprehensive product-market fit analysis for Asia",
+    "package1.li2":"Competitor and audience behavior research",
+    "package1.li3":"Regulatory and compliance roadmap for cross-border trade",
+    "package1.li4":"Customized influencer marketing channel selection",
+    "package2.title":"Influencer Matching &amp; Campaigns","package2.tagline":"Collaborate with hand-picked Asian creators to launch high-converting campaigns.",
+    "package2.li1":"Direct access to vetted tier-1 and niche creators in Asia",
+    "package2.li2":"Bilingual contract negotiation and legal coordination",
+    "package2.li3":"Content localization, scripting oversight, and cultural alignment",
+    "package2.li4":"Campaign execution across major Asian social platforms",
+    "package2.li5":"Real-time performance tracking and reporting",
+    "package3.title":"Full-Scale Cross-Border Partnership","package3.tagline":"End-to-end commercial management to build long-term market presence in Asia.",
+    "package3.li1":"Dedicated relationship manager based between Europe and Asia",
+    "package3.li2":"Ongoing creator ambassador programs and long-term contracts",
+    "package3.li3":"E-commerce integration and distribution coordination",
+    "package3.li4":"Localization of brand assets and digital storefronts",
+    "package3.li5":"Regular strategic reviews and growth scaling",
+    "process.kicker":"How it works","process.h2":"A transparent path from European HQ to Asian markets.",
+    "p1.title":"Discovery.","p1.text":"We assess your product offering, brand identity, and target Asian region.",
+    "p2.title":"Matching.","p2.text":"We propose ideal creator partners and design a bespoke campaign or entry plan.",
+    "p3.title":"Launch &amp; Scale.","p3.text":"We execute the partnership, monitor conversions, and scale your brand presence.",
+    "team.kicker":"Who's behind this","team.h2":"Connecting European enterprise with Asian influence.",
+    "team.text":"Okaerinasai Global is operated by cross-border specialists rooted in Portugal and Japan. We bridge European business excellence with deep Asian digital ecosystems, ensuring smooth communication, legal clarity, and high-impact partnerships for companies ready to scale internationally.",
+    "faq.kicker":"Questions","faq.h2":"Key insights for expanding companies.",
+    "faq1.q":"Which Asian markets do you cover?","faq1.a":"We specialize primarily in Japan and broader East/Southeast Asian digital markets, leveraging deep local networks and bilingual creators.",
+    "faq2.q":"Do we need physical distribution in Asia before starting influencer campaigns?","faq2.a":"Not necessarily. Many European brands start with brand awareness campaigns, digital services, or cross-border e-commerce shipping directly from Europe.",
+    "faq3.q":"How do you select the right creators for our brand?","faq3.a":"We vet creators based on audience demographics, engagement quality, brand safety, and alignment with your specific product vertical.",
+    "faq4.q":"How are contracts and international payments managed?","faq4.a":"We handle cross-border contracts, compliance, and translation through our team and trusted legal/accounting network, ensuring secure operations.",
+    "contact.kicker":"Get started","contact.h2":"Schedule a partnership call.",
+    "contact.p":"Tell us about your company and your goals in Asia. Our team will review and reply within two business days.",
+    "label.name":"Company Name &amp; Contact Person","label.email":"Email","label.business":"What does your company offer / Website?","label.timeline":"What is your expansion goal?",
+    "opt1":"Asian Market Entry Strategy","opt2":"Influencer Matching &amp; Campaigns","opt3":"Full-Scale Cross-Border Partnership","label.message":"Tell us about your target Asian markets or goals","btn.submit":"Request a Partnership Call",
+    "label.consent":"Information you submit is used only to respond to your enquiry and is processed in accordance with EU GDPR",
+    "name.placeholder":"Your company name","business.placeholder":"e.g. European wine brand / www.example.com","message.placeholder":"Optional (max 500 chars)",
+    "footer.disclaimer":"Okaerinasai Global provides business expansion consulting, cross-border marketing coordination, and creator partnership management. Formal legal and tax advisory services are supported via our licensed partners. Outcomes depend on individual market conditions.",
+    "footer.copy":"© 2026 Okaerinasai Global. Lisbon, Portugal."
+  }
+};
+
+function applyLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key = el.getAttribute('data-i18n');
+    if(translations[lang][key] !== undefined){ el.innerHTML = translations[lang][key]; }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+    var key = el.getAttribute('data-i18n-placeholder');
+    if(translations[lang][key] !== undefined){ el.placeholder = translations[lang][key]; }
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+  document.getElementById('navlist').classList.remove('open');
+}
+
+// Auto-close mobile navigation when a section link is tapped
+document.querySelectorAll('#navlist a').forEach(function(link){
+  link.addEventListener('click', function(){
+    document.getElementById('navlist').classList.remove('open');
+  });
+});
+
+// Character Counter for Message Textarea
+const messageInput = document.getElementById("message");
+const charCount = document.getElementById("char-count");
+
+if (messageInput && charCount) {
+  messageInput.addEventListener("input", function() {
+    charCount.textContent = `${this.value.length}/500`;
+  });
+}
+
+// AJAX Form Submission for Formspree
+const form = document.getElementById("consultation-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const data = new FormData(form);
+  const currentLang = document.documentElement.lang || 'en';
+  
+  if (currentLang === 'ja') {
+    status.textContent = "送信中...";
+  } else if (currentLang === 'pt') {
+    status.textContent = "A enviar...";
+  } else {
+    status.textContent = "Sending...";
+  }
+  
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      if (currentLang === 'ja') {
+        status.textContent = "送信が完了しました。2営業日以内にご連絡いたします。";
+      } else if (currentLang === 'pt') {
+        status.textContent = "Obrigado! A sua mensagem foi enviada. Responderemos em dois dias úteis.";
+      } else {
+        status.textContent = "Thank you! Your request has been sent. We'll reply within two business days.";
+      }
+      form.reset();
+      if (charCount) charCount.textContent = "0/500";
+    } else {
+      const errorData = await response.json();
+      if (Object.hasOwn(errorData, 'errors')) {
+        status.textContent = errorData["errors"].map(error => error["message"]).join(", ");
+      } else {
+        status.textContent = currentLang === 'ja' 
+          ? "送信エラーが発生しました。再度お試しください。" 
+          : currentLang === 'pt' 
+          ? "Ocorreu um erro ao enviar o formulário. Tente novamente." 
+          : "Oops! There was a problem submitting your form.";
+      }
+    }
+  } catch (error) {
+    status.textContent = currentLang === 'ja' 
+      ? "通信エラーが発生しました。時間を置いて再度お試しください。" 
+      : currentLang === 'pt' 
+      ? "Erro de rede. Por favor, tente novamente mais tarde." 
+      : "Oops! Network error. Please try again later.";
+  }
+});
+</script>
+
+</body>
+</html>
